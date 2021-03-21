@@ -5,7 +5,7 @@
         <v-row wrap>
                 <v-card
                     class="overflow-y-auto ma-1"
-                    max-height="300"
+                    max-height="320"
                     min-width="100%"
                     outlined
                     color="teal lighten-5"     
@@ -87,26 +87,35 @@
                                         >
                                         <v-icon>mdi-plus</v-icon>
                                     </v-btn>
+                                    <v-btn
+                                        v-model="counter"
+                                        small
+                                        icon
+                                        color="pink darken-1"
+                                        @click="prevDay"
+                                        >
+                                        <v-icon>mdi-minus</v-icon>
+                                    </v-btn>
                                 </v-list-item-subtitle>
 
                             </v-list-item-content>
                             </v-list-item>
 
                             <v-card-text>
-                                <v-list-item-subtitle>Average temperature:</v-list-item-subtitle>
+
                             <v-row align="center">
+                                <v-list-item-subtitle>Average temperature:</v-list-item-subtitle>
                                 <v-col
-                                class="display-1"
+                                class="display-3"
                                 cols="6"
-                                 v-if="(typeof (this.weather) != typeof(''))"
+                                v-if="(typeof (this.weather) != typeof(''))"
                                 >
                                 {{weather[this.counter].temp}}&deg;C
                                 </v-col>
                                 <v-col cols="6">
-                                <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sun.png"
-                                    alt="Sunny image"
-                                    width="92"
+                                <v-img v-if="(typeof (this.weather) != typeof(''))"
+                                    :src="`https://www.weatherbit.io/static/img/icons/${weather[this.counter].weather.icon}.png`"
+                                    width="92"    
                                 ></v-img>
                                 </v-col>
                             </v-row>
@@ -114,7 +123,8 @@
 
                     </v-col>
                     <v-col>
-                             <v-list-item >
+                        <div>
+                            <v-list-item >
                             <v-list-item-icon>
                                 <v-icon>mdi-weather-windy</v-icon>
                             </v-list-item-icon>
@@ -167,8 +177,8 @@
                                 <v-icon>mdi-water</v-icon>
                             </v-list-item-icon>
                             <v-list-item-subtitle class="ml-6" v-if="(typeof (this.weather) != typeof(''))">{{weather[this.counter].rh}} %</v-list-item-subtitle>
-                            </v-list-item> 
-    
+                            </v-list-item>
+                        </div>
                     </v-col>
                 </v-row>                
                 </v-card>
@@ -188,6 +198,7 @@
         url_base: 'https://api.weatherbit.io/v2.0/forecast/daily?city=',
 
         weather: "",
+
 
         counter:0,
 
@@ -461,12 +472,17 @@
 
         setResults (results) {
         this.weather = results.data;
-        console.log(this.weather)
         },
 
         addDay () {
-            if(this.counter < this.weather.length - 1) {
+            if(this.counter < this.weather.length) {
                 this.counter = this.counter + 1
+            }
+        },
+
+        prevDay () {
+            if(this.counter < this.weather.length + 1) {
+                this.counter = this.counter - 1
             }
         },
 

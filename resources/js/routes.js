@@ -20,13 +20,13 @@ export default {
             path: '/dashboard',
             component: Dashboard,
             name: 'Dashboard',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ name: 'Login' })
-            //     })
-            // }
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/authenticated').then(() => {
+                    next()
+                }).catch(() => {
+                    return next({ name: 'Login' })
+                })
+            }
 
         },
 

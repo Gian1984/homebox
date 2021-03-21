@@ -111,6 +111,7 @@
                 password: this.password,
              }
              this.$emit('login', project)
+             this.$refs.form.reset()
         }
     }
   }

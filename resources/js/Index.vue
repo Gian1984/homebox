@@ -113,7 +113,7 @@ import PopupRegister from './components/PopupRegister'
       return {
       
         drawer: null,
-      
+        user:'',
       
       
       }
@@ -134,9 +134,9 @@ import PopupRegister from './components/PopupRegister'
       },
 
       login(login){
-
+ 
           axios.post('api/login',login).then(response=>{ 
-
+          this.user = response.data;
           this.$router.push({ path: "/" });
           
 

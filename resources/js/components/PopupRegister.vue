@@ -129,6 +129,7 @@
              }
             
              this.$emit('register', project)
+             this.$refs.form.reset()
         }
     }
   }

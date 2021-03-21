@@ -1,9 +1,22 @@
 <template>
-    <div>Dashboard</div>
+    <div>
+        <taskmanager/>
+        
+    </div>
 </template>
 
 <script>
+import Taskmanager from '../components/Taskmanager.vue'
 export default {
     
+   
+
+    components: {
+      Taskmanager
+    },
+    
+    methods:{
+        
+    }
 }
-</script>
+</script>Taskmanager
