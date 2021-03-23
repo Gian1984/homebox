@@ -9,7 +9,7 @@
       <template v-slot:activator="{ on, attrs }"> 
 
         <v-btn 
-        depressed 
+        depressed
         small 
         text 
         v-bind="attrs"
@@ -55,13 +55,39 @@
               required
             ></v-text-field>
 
-            <v-alert
+            <!-- <v-alert
               small
               dismissible
               icon="mdi-alert-outline"
-              v-if="errors.data"
+              v-if="error"
               type="warning"
-            >{{errors.data.message}}</v-alert>
+            >{{error.data.message}}</v-alert> -->
+
+             <v-alert
+              class="mr-2 ml-2 "
+              small
+              v-if="error"
+              type="warning"
+              icon="mdi-alert-outline"
+              >
+                <v-row align="center">
+                  <v-col class="grow">
+                    <span class="text-center">{{error.data.message}}</span>
+                  </v-col>
+                  <v-col class="shrink">
+                    <v-btn
+                    icon
+                    class="mt-2"
+                    >
+                      <v-icon
+                      @click="resetValidation"
+                      >
+                      mdi-close-circle
+                      </v-icon>
+                    </v-btn>
+                  </v-col>
+              </v-row>
+            </v-alert>
 
             <v-divider></v-divider>
             <v-spacer></v-spacer>
@@ -83,12 +109,18 @@
 </template>
 
 <script>
+
+import EventBus from "../event"
+
   export default {
+
+
+    props:['user','error'],
+
     data: () => ({
       valid: true,
       menu: false,
-            errors: [],
-         
+           
             email: '',
             emailRules: [
                 v => !!v || 'E-mail is required',
@@ -106,14 +138,23 @@
 
         login(){
 
-             const project = {
+             const login = {
                 email: this.email,
                 password: this.password,
              }
-             this.$emit('login', project)
+             this.$emit('login', login)
              this.$refs.form.reset()
-        }
-    }
+        },
+
+        resetValidation () {
+          let loginError = this.error
+          loginError = "";
+          this.$emit("update-login", loginError);
+        },
+    },
+
+
+    
   }
 </script>
 

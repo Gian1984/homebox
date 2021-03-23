@@ -2,7 +2,9 @@ import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import Projects from './pages/Projects'
 import Notfound from './pages/Notfound'
+import Logout from './pages/Logout'
 import Team from './pages/Team'
+import Unauthorized from './pages/Unauthorized'
 
 
 export default {
@@ -24,7 +26,7 @@ export default {
                 axios.get('/api/authenticated').then(() => {
                     next()
                 }).catch(() => {
-                    return next({ name: 'Login' })
+                    return next({ path: '/unauthorized' });
                 })
             }
 
@@ -44,7 +46,7 @@ export default {
             //     axios.get('/api/authenticated').then(() => {
             //         next()
             //     }).catch(() => {
-            //         return next({ name: 'Login' })
+            //         return next({ path: '/' });
             //     })
             // }
         },
@@ -60,6 +62,18 @@ export default {
             //         return next({ name: 'Login' })
             //     })
             // }
-        }
+        },
+
+        {
+            path: '/logout',
+            component: Logout,
+            name: 'Logout',
+        },
+
+        {
+            path: '/unauthorized',
+            component: Unauthorized,
+            name: 'Unauthorized',
+        },
     ]
 }

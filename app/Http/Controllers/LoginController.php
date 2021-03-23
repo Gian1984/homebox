@@ -24,7 +24,7 @@ class LoginController extends Controller
         throw ValidationException::withMessages([
             'email'=>['The provided credentials are incorect.']
         ]);
-
+        
     }
 
     public function logout(){

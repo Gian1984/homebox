@@ -25,19 +25,26 @@
         </v-btn>
       </router-link>
 
-      <router-link to="/dashboard" exact-path style="text-decoration: none;">
-          <v-btn
-          class="mx-2 mt-4"
-          fab
-          dark
-          small
-          color="teal lighten-1"
-          >
-          <v-icon dark>
-              mdi-pill
-          </v-icon>
-        </v-btn>
-      </router-link>
+      <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <router-link to="/dashboard" exact-path style="text-decoration: none;">
+              <v-btn
+              class="mx-2 mt-4"
+              v-on="on"
+              v-bind="attrs"
+              fab
+              dark
+              small
+              color="teal lighten-1"
+              >
+              <v-icon dark>
+                  mdi-pill
+              </v-icon>
+            </v-btn>
+          </router-link>
+        </template>
+        <span>Need to be logged in to access!</span>
+      </v-tooltip>
 
       <router-link to="/projects" exact-path style="text-decoration: none;">
           <v-btn
@@ -53,7 +60,10 @@
         </v-btn>
       </router-link>
 
-      <router-link to="/team" exact-path style="text-decoration: none;">
+      <router-link
+           to="/team" 
+           exact-path style="text-decoration: none;"
+           >
           <v-btn
           class="mx-2 mt-4"
           fab
@@ -81,10 +91,16 @@
       
       <PopupRegister v-on:register="register($event)"/>
 
-      <PopupLogin v-on:login="login($event)"/>
+      <PopupLogin v-on:login="login($event)" :user="user" :error="error" @update-login="update"/>
 
 
-      <v-btn @click="logout" depressed small text >
+      <v-btn 
+        @click="logout" 
+        depressed 
+        small 
+        text
+        v-if="(typeof (this.user) !== typeof(''))" 
+      >
           <span>Sign out</span>
           <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
@@ -99,8 +115,11 @@
 
 <script>
 
+// import {errorLogin} from '../js/app'
 import PopupLogin from './components/PopupLogin'
 import PopupRegister from './components/PopupRegister'
+import EventBus from "./event";
+
 
   export default {
 
@@ -114,6 +133,8 @@ import PopupRegister from './components/PopupRegister'
       
         drawer: null,
         user:'',
+        error:'',
+
       
       
       }
@@ -124,7 +145,6 @@ import PopupRegister from './components/PopupRegister'
       register(register){
 
           axios.post('api/register',register).then(response=>{
-            
             this.$router.push({ path: "/dashboard" });
 
           }).catch((error)=>{
@@ -137,20 +157,21 @@ import PopupRegister from './components/PopupRegister'
  
           axios.post('api/login',login).then(response=>{ 
           this.user = response.data;
-          this.$router.push({ path: "/" });
           
-
           }).catch((error)=>{
-              this.errors = error.response
-              this.$delete(project)
+            this.error=error.response
           })
 
       },
+      update(error){
+        this.error=error;
+      },
+
 
       logout(){
             axios.post('api/logout').then(response=>{
-            this.$router.push({ path: "/dashboard" });
-
+            this.$router.push({ path: "/logout" });
+            return this.user=''
           })
       }
 
