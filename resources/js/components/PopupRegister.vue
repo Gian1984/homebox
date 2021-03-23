@@ -3,7 +3,7 @@
     <v-menu
       v-model="menu"
       :close-on-content-click="false"
-      :nudge-width="200"
+      :nudge-width="270"
       offset-y
     >
       <template v-slot:activator="{ on, attrs }"> 
@@ -67,12 +67,30 @@
             ></v-text-field>
 
             <v-alert
+              class="mr-2 ml-2 "
               small
-              dismissible
-              icon="mdi-alert-outline"
-              v-if="errors.data"
+              v-if="errorReg"
               type="warning"
-            >{{errors.data.message}}</v-alert>
+              prominent
+              icon="mdi-alert-outline"
+              >
+                <v-row align="center">
+                  <v-col class="grow">
+                    <span class="text-center">{{errorReg.data.errors.email[0]}}</span>
+                  </v-col>
+                  <v-col class="shrink">
+                    <v-btn
+                    icon
+                    >
+                      <v-icon
+                      @click="resetValidation"
+                      >
+                      mdi-close-circle
+                      </v-icon>
+                    </v-btn>
+                  </v-col>
+              </v-row>
+            </v-alert>
 
             <v-divider></v-divider>
             <v-spacer></v-spacer>
@@ -95,10 +113,12 @@
 
 <script>
   export default {
+
+    props:['errorReg'],
+
     data: () => ({
       valid: true,
       menu: false,
-            errors: [],
             
             name: '',
             nameRules: [
@@ -130,7 +150,13 @@
             
              this.$emit('register', project)
              this.$refs.form.reset()
-        }
+        },
+
+        resetValidation () {
+          let registerError = this.errorReg
+          registerError = "";
+          this.$emit("update-register", registerError);
+        },
     }
   }
 </script>

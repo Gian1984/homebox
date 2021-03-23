@@ -3,7 +3,7 @@
     <v-menu
       v-model="menu"
       :close-on-content-click="false"
-      :nudge-width="200"
+      :nudge-width="270"
       offset-y
     >
       <template v-slot:activator="{ on, attrs }"> 
@@ -55,29 +55,22 @@
               required
             ></v-text-field>
 
-            <!-- <v-alert
-              small
-              dismissible
-              icon="mdi-alert-outline"
-              v-if="error"
-              type="warning"
-            >{{error.data.message}}</v-alert> -->
 
              <v-alert
               class="mr-2 ml-2 "
               small
-              v-if="error"
+              v-if="errorLog"
               type="warning"
+              prominent
               icon="mdi-alert-outline"
               >
                 <v-row align="center">
                   <v-col class="grow">
-                    <span class="text-center">{{error.data.message}}</span>
+                    {{errorLog.data.message}}
                   </v-col>
                   <v-col class="shrink">
                     <v-btn
                     icon
-                    class="mt-2"
                     >
                       <v-icon
                       @click="resetValidation"
@@ -115,7 +108,7 @@ import EventBus from "../event"
   export default {
 
 
-    props:['user','error'],
+    props:['user','errorLog'],
 
     data: () => ({
       valid: true,
@@ -147,7 +140,7 @@ import EventBus from "../event"
         },
 
         resetValidation () {
-          let loginError = this.error
+          let loginError = this.errorLog
           loginError = "";
           this.$emit("update-login", loginError);
         },

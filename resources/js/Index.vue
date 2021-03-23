@@ -89,9 +89,9 @@
 
       <v-spacer></v-spacer>
       
-      <PopupRegister v-on:register="register($event)"/>
+      <PopupRegister v-on:register="register($event)" :errorReg="errorReg" @update-register="updateRegister"/>
 
-      <PopupLogin v-on:login="login($event)" :user="user" :error="error" @update-login="update"/>
+      <PopupLogin v-on:login="login($event)" :user="user" :errorLog="errorLog" @update-login="updateLogin"/>
 
 
       <v-btn 
@@ -133,7 +133,8 @@ import EventBus from "./event";
       
         drawer: null,
         user:'',
-        error:'',
+        errorLog:'',
+        errorReg:'',
 
       
       
@@ -148,9 +149,13 @@ import EventBus from "./event";
             this.$router.push({ path: "/dashboard" });
 
           }).catch((error)=>{
-                this.errors = error.response
+              
+              this.errorReg = error.response
           })
 
+      },
+      updateRegister(error){
+        this.errorReg=error;
       },
 
       login(login){
@@ -159,12 +164,12 @@ import EventBus from "./event";
           this.user = response.data;
           
           }).catch((error)=>{
-            this.error=error.response
+            this.errorLog=error.response
           })
 
       },
-      update(error){
-        this.error=error;
+      updateLogin(error){
+        this.errorLog=error;
       },
 
 
