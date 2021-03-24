@@ -115,11 +115,8 @@
 
 <script>
 
-// import {errorLogin} from '../js/app'
 import PopupLogin from './components/PopupLogin'
 import PopupRegister from './components/PopupRegister'
-import EventBus from "./event";
-
 
   export default {
 
@@ -135,8 +132,6 @@ import EventBus from "./event";
         user:'',
         errorLog:'',
         errorReg:'',
-
-      
       
       }
     },
@@ -149,7 +144,6 @@ import EventBus from "./event";
             this.$router.push({ path: "/dashboard" });
 
           }).catch((error)=>{
-              
               this.errorReg = error.response
           })
 
@@ -162,6 +156,7 @@ import EventBus from "./event";
  
           axios.post('api/login',login).then(response=>{ 
           this.user = response.data;
+          this.$router.push({ path: "/" });
           
           }).catch((error)=>{
             this.errorLog=error.response

@@ -98,6 +98,8 @@ import { format, parseISO } from 'date-fns'
 
 export default {
 
+  props:['projects'],
+
     data () {
       return {
         name:'',  
@@ -136,7 +138,7 @@ export default {
             axios.post('/api/tasks', project).then(response=>{
             this.loading=false;
             this.dialog=false;
-            window.location.reload(true)
+            this.$emit("add-projects", project);
 
             }).catch((error)=>{
               console.log(error)

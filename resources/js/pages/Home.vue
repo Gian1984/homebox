@@ -79,13 +79,7 @@
 
                     </v-col>
                     <v-col>
-                    <!-- <av-bars
-                      caps-color="#FFF"
-                      :bar-color="['#f00', '#ff0', '#0f0']"
-                      canv-fill-color="#000"
-                      :caps-height="2"
-                      audio-src="/assets/cosimo.mp3">
-                    </av-bars> -->
+                    
                     <v-card-text>
                         <div class="font-weight-bold ml-8 mb-2">
                             Playlist

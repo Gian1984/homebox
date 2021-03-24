@@ -93,15 +93,17 @@ export default {
         updateProject(projectId){
             if (this.$refs.form.validate()){
                 this.loading=true;
-            const project = {
+            const status = {
                 status: this.status
             }
         
 
-            axios.put('/api/tasks/'+ projectId, project).then(response=>{
+            axios.put('/api/tasks/'+ projectId, status).then(response=>{
             this.loading=false;
             this.dialog=false;
-            window.location.reload()
+            // window.location.reload()
+            this.project.status = status.status
+            this.$emit("update-project", this.project )
             })
 
             .catch(error =>{

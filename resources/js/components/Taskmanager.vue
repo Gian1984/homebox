@@ -6,7 +6,7 @@
 
       <v-row class="mb-5">
 
-        <AddTask/>
+        <AddTask :projects="projects" @add-projects="addProject"/>
 
         <v-tooltip bottom small>
           <template v-slot:activator="{ on }">  
@@ -90,7 +90,7 @@
                 <span>Remove</span>
               </v-tooltip>
               
-              <UpdateProject class="mt-2" v-bind:project="project"/>
+              <UpdateProject class="mt-2" :project="project" @update-project="updateProject"/>
               
             </v-row>  
           </v-col>
@@ -134,7 +134,6 @@ export default {
     getLoggedUser(){
     axios.get('/api/user').then(response => {
          this.user = response.data;
-         console.log(response.data)
          })
         .catch(error =>{
         console.log(error);
@@ -144,7 +143,15 @@ export default {
     sortBy(prop){
       this.projects.sort((a,b)=> a[prop] < b[prop] ? -1 : 1)
     },
+
     
+    addProject(project){
+      this.projects.push(project)
+    },
+
+    updateProject(project){
+      this.project = project.data 
+    },
   
 
     getList(){

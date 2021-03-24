@@ -42,26 +42,13 @@ export default {
             path: '/team',
             component: Team,
             name: 'Team',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ path: '/' });
-            //     })
-            // }
         },
 
         {
             path: '/projects',
             component: Projects,
             name: 'Projects',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ name: 'Login' })
-            //     })
-            // }
+
         },
 
         {

@@ -112,6 +112,7 @@
 </template>
 
 <script>
+
   export default {
 
     props:['errorReg'],
