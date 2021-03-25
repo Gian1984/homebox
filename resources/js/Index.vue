@@ -141,7 +141,7 @@ import PopupRegister from './components/PopupRegister'
       register(register){
 
           axios.post('api/register',register).then(response=>{
-            this.$router.push({ path: "/dashboard" });
+            this.$router.push({ path: "/" });
 
           }).catch((error)=>{
               this.errorReg = error.response

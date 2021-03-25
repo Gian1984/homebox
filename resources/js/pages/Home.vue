@@ -126,13 +126,11 @@
 
 import MusicSwitch from '../components/MusicSwitch'
 import Weather from '../components/Weather'
-import AudioVisual from 'vue-audio-visual'
 
 export default {
 
     components: {
       MusicSwitch,
-      AudioVisual,
       Weather
     },
 
