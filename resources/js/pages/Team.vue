@@ -21,7 +21,7 @@
                         </v-list-item-title>
                         <v-list-item-subtitle class="caption mt-2 font-italic">"{{person.quote}}"</v-list-item-subtitle>
                         <v-spacer></v-spacer>
-                        <v-list-item-subtitle class="caption mt-2 text-right">{{person.author}}</v-list-item-subtitle>
+                        <v-list-item-subtitle class="caption mt-2 text-right"> - {{person.author}}</v-list-item-subtitle>
                     </v-list-item-content>
 
                     <v-list-item-avatar tile size="80">
@@ -55,13 +55,7 @@ export default {
 
   data() {
     return {
-      team: [
-         { name: 'Gianluca Tiengo', role: 'Web developer', quote:'I am not what I think. I am thinking what I think.', author:'— Eric Butterworth', avatar:'../img/sdengo.png'},
-        { name: 'Giacomo Rosso', role: 'Graphic designer', quote: 'Belief is when someone else does the thinking.', author:'— Buckminster Fuller', avatar:'/img/jaques.png'},
-        { name: 'Marco Di Maio', role: 'Web developer', quote:'Better to be without logic than without feeling.', author:'— Charlotte Bronte', avatar:'/img/dima.png' },
-        { name: 'Paolo Properzi', role: 'Social media', quote: 'Did you ever stop to think, and forget to start again?', author:'— Winnie the Pooh', avatar:'/img/prop.png'},
-        { name: 'Alessandro Pozzato', role: 'Sales guru', quote: 'I succeeded by saying what everyone else is thinking.', author:'— Joan Rivers', avatar:'/img/pozzi.png'}
-      ],
+      team: [],
 
       users:'',
     }
@@ -71,8 +65,7 @@ export default {
 
     getUsers(){
     axios.get('/api/index ').then(response => {
-        console.log(response)
-        //  this.team = response.data;
+         this.team = response.data;
          })
         .catch(error =>{
         console.log(error);

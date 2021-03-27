@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LoginController;
@@ -22,6 +23,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->get('index', function (Request $request) {
+    Route::get('index', [RegisterController::class], 'index');
+    return $users = DB::table('users')->get(['name','roles','quote','author','avatar','email']);
+});
+
+Route::middleware('auth:sanctum')->post('destroy', function (Request $request) {
+    Route::post('destroy', [RegisterController::class], 'destroy');
+    return DB::table('users')->findOrFail($id)->delete();
+});
+
+
 Route::middleware('auth:sanctum')->get('/authenticated', function () {
     return true;
 });
@@ -35,4 +47,3 @@ Route::post('logout', [LoginController::class, 'logout']);
 
 Route::resource('tasks', TaskController::class)->except(['create', 'show']);
 
-Route::get('/team/index', [RegisterController::class], 'index');

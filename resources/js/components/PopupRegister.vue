@@ -180,11 +180,9 @@
                     <v-btn
                     icon
                     >
-                      <v-icon
-                      @click="resetValidation"
-                      >
-                      mdi-close-circle
-                      </v-icon>
+                    <v-icon @click="resetValidation">
+                        mdi-close-circle
+                    </v-icon>
                     </v-btn>
                   </v-col>
               </v-row>
@@ -195,12 +193,14 @@
 
             <v-btn
               id="sub"
-              class="m-4"
+              class="mr-5"
               icon
-              color="green accent-2"
+              text
+              color="success"
               v-on:click="register"
             >
-              <v-icon>mdi-send</v-icon>
+              <span>Register</span>
+              <v-icon class="mr-5">mdi-send</v-icon>
             </v-btn>
 
           </v-form>
@@ -213,7 +213,7 @@
 
   export default {
 
-    props:['errorReg'],
+    props:['errorReg','user'],
 
     data: () => ({
       valid: true,
@@ -241,7 +241,7 @@
             quote:'',
             quoteRules:[
               v => !!v || 'Quote is required',
-              v => (v && v.length <= 60) || 'Quote must be less than 50 characters',
+              v => (v && v.length <= 70) || 'Quote must be less than 70 characters',
             ],
 
             author:'',
@@ -291,6 +291,28 @@
               category: 'Kevin',
               keyword: 'Kevin',
             },
+
+            {
+              image: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraightStrand&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=ShirtVNeck&clotheColor=Blue03&eyeType=Happy&eyebrowType=UpDownNatural&mouthType=Smile&skinColor=DarkBrown',
+              title: 'Gema',
+              category: 'Gema',
+              keyword: 'Gema',
+            },
+
+            {
+              image: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairTheCaesarSidePart&accessoriesType=Wayfarers&hairColor=Red&facialHairType=BeardLight&facialHairColor=Red&clotheType=ShirtVNeck&clotheColor=PastelGreen&eyeType=WinkWacky&eyebrowType=SadConcerned&mouthType=Smile&skinColor=Tanned',
+              title: 'Bryan',
+              category: 'Bryan',
+              keyword: 'Bryan',
+            },
+
+            {
+              image: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Wayfarers&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Wink&eyebrowType=Angry&mouthType=Concerned&skinColor=Tanned',
+              title: 'Ibrahim',
+              category: 'Ibrahim',
+              keyword: 'Ibrahim',
+            },
+
           ],
       search: '',
       avatar:'',     
@@ -362,7 +384,7 @@
 
 <style scoped>
 #sub{
-  margin-left: 85% !important ;
+  margin-left: 80% !important ;
 }
 .v-text-field label {
     font-size: 0.7em !important;

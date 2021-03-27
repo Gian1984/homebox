@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\RegisterController;
 
@@ -31,14 +31,6 @@ class RegisterController extends Controller
             'author'=>$request->author,
             'avatar'=>$request->avatar,
         ]);
-
-    }
-
-    public function index(){
-
-        $users = User::all();
-
-        return $users;   
 
     }
 }

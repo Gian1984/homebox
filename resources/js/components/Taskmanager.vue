@@ -119,12 +119,14 @@ export default {
 
   data() {
     return {
+      
       projects: [],
       fav: true,
       menu: false,
       message: false,
       hints: true,
       user:'',
+
     }
   },
    

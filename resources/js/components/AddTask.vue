@@ -26,7 +26,8 @@
 
         <v-card-text>
           <v-form ref="form">
-            <v-text-field v-model="name" label="Person" prepend-icon="mdi-face" :rules="inputRules"></v-text-field>  
+
+            <v-select v-model="name" :items="team"  item-text="name" :rules="[v => !!v || 'Name is required']" prepend-icon="mdi-face" label="Person" required ></v-select> 
             <v-text-field v-model="title" label="Title" prepend-icon="mdi-folder-open" :rules="inputRules"></v-text-field>
             <v-textarea v-model="content" label="Information" prepend-icon="mdi-pencil" :rules="inputRules"></v-textarea>
 
@@ -102,27 +103,44 @@ export default {
 
     data () {
       return {
+
         name:'',  
         title:'',
         content:'',
         date: '',
         status:'',
+
         inputRules:[
             v=> v.length >=3 || 'Minimum is 3 character'
         ],
         loading:false,
+
         dialog:false,
+
         items: [
           'ongoing',
           'complete',
           'overdue',
         ],
+
+        team:'',
       }
     },
     
   
     
     methods:{
+
+        getUsers(){
+          axios.get('/api/index ').then(response => {
+          // console.log(response.data)
+          this.team = response.data;
+          })
+          .catch(error =>{
+          console.log(error);
+          })
+        },
+
         addProject(){
             if (this.$refs.form.validate()){
                 this.loading=true;
@@ -154,5 +172,9 @@ export default {
         return this.date ? format(parseISO(this.date), 'EEEE, MMMM do yyyy') : ''
       },
     },
+
+    created(){
+        this.getUsers();
+    }
 }
 </script>

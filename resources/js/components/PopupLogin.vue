@@ -89,9 +89,10 @@
               id="sub"
               class="m-4"
               icon
-              color="green accent-2"
+              color="success"
               v-on:click="login"
             >
+              <span>Login</span>
               <v-icon>mdi-send</v-icon>
             </v-btn>
 
@@ -153,7 +154,7 @@ import EventBus from "../event"
 
 <style scoped>
 #sub{
-  margin-left: 85% !important ;
+  margin-left: 80% !important ;
 }
 .v-text-field label {
     font-size: 0.7em !important;

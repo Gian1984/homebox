@@ -6,7 +6,7 @@
           <v-card id="main" height="400" color="transparent" flat>
             <div class="display-3 mt-5">Unauthorized.</div>
             <div class="grey--text lighten-5 mt-5">
-              The page you are trying to get to require a logged user,
+              The page you are trying to get require a logged user,
               or has migrated to a parallel universe.
             </div>
             <div class="paragraph-text mt-2">

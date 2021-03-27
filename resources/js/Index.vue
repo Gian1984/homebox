@@ -43,39 +43,54 @@
             </v-btn>
           </router-link>
         </template>
-        <span>Need to be logged in to access!</span>
+        <span>Need to be logged in to access dashboard!</span>
       </v-tooltip>
 
-      <router-link to="/projects" exact-path style="text-decoration: none;">
-          <v-btn
-          class="mx-2 mt-4"
-          fab
-          dark
-          small
-          color="teal lighten-1"
-          >
-          <v-icon dark>
-              mdi-animation-outline
-          </v-icon>
-        </v-btn>
-      </router-link>
+      <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <router-link to="/projects" exact-path style="text-decoration: none;">
+              <v-btn
+              v-on="on"
+              v-bind="attrs"
+              class="mx-2 mt-4"
+              fab
+              dark
+              small
+              color="teal lighten-1"
+              >
+              <v-icon dark>
+                  mdi-animation-outline
+              </v-icon>
+            </v-btn>
+          </router-link>
+        </template>
+          <span>Need to be logged in to access personal task!</span>
+      </v-tooltip>
 
-      <router-link
-           to="/team" 
-           exact-path style="text-decoration: none;"
-           >
-          <v-btn
-          class="mx-2 mt-4"
-          fab
-          dark
-          small
-          color="teal lighten-1"
-          >
-          <v-icon dark>
-              mdi-account-group
-          </v-icon>
-        </v-btn>
-      </router-link>
+
+      <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <router-link
+              to="/team" 
+              exact-path style="text-decoration: none;"
+              >
+              <v-btn
+              v-on="on"
+              v-bind="attrs"
+              class="mx-2 mt-4"
+              fab
+              dark
+              small
+              color="teal lighten-1"
+              >
+              <v-icon dark>
+                  mdi-account-group
+              </v-icon>
+            </v-btn>
+          </router-link>
+        </template>
+        <span>Need to be logged in to access team!</span>
+      </v-tooltip>
       
     </v-navigation-drawer>
 
@@ -89,7 +104,7 @@
 
       <v-spacer></v-spacer>
       
-      <PopupRegister v-on:register="register($event)" :errorReg="errorReg" @update-register="updateRegister"/>
+      <PopupRegister v-on:register="register($event)" :errorReg="errorReg" @update-register="updateRegister" :user="user"/>
 
       <PopupLogin v-on:login="login($event)" :user="user" :errorLog="errorLog" @update-login="updateLogin"/>
 

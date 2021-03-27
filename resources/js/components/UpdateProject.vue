@@ -76,12 +76,17 @@ export default {
 
        data () {
       return {
+
         status:null,
+
         inputRules:[
             v=> v.length >=3 || 'Minimum is 3 character'
         ],
+
         loading:false,
+
         dialog:false,
+
         items: [
           'ongoing',
           'complete',
@@ -90,6 +95,7 @@ export default {
       }
     },    
     methods:{
+      
         updateProject(projectId){
             if (this.$refs.form.validate()){
                 this.loading=true;
@@ -101,7 +107,6 @@ export default {
             axios.put('/api/tasks/'+ projectId, status).then(response=>{
             this.loading=false;
             this.dialog=false;
-            // window.location.reload()
             this.project.status = status.status
             this.$emit("update-project", this.project )
             })
