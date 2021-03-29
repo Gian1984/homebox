@@ -1,6 +1,6 @@
 <template>
   <div class="projects">
-    <h1 class="title grey--text">Projects</h1>
+    <h1 class="title mb-3">Projects</h1>
     <p>{{user.name}}</p>
     <v-container fluid class="my-5">
       

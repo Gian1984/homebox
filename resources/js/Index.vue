@@ -91,6 +91,30 @@
         </template>
         <span>Need to be logged in to access team!</span>
       </v-tooltip>
+
+       <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <router-link
+              to="/account" 
+              exact-path style="text-decoration: none;"
+              >
+              <v-btn
+              v-on="on"
+              v-bind="attrs"
+              class="mx-2 mt-4"
+              fab
+              dark
+              small
+              color="teal lighten-1"
+              >
+              <v-icon dark>
+                  mdi-account-circle
+              </v-icon>
+            </v-btn>
+          </router-link>
+        </template>
+        <span>Need to be logged in to access account!</span>
+      </v-tooltip>
       
     </v-navigation-drawer>
 

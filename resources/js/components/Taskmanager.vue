@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <h1 class="title grey--text">Dashboard</h1>
+    <h1 class="title">Dashboard</h1>
 
     <v-container fluid class="my-5 mt-2">
 
@@ -180,7 +180,7 @@ export default {
   created(){
         this.getList();
         this.getLoggedUser();
-    }
+  }
   
 }
 </script>

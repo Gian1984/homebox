@@ -4,6 +4,7 @@ import Projects from './pages/Projects'
 import Notfound from './pages/Notfound'
 import Logout from './pages/Logout'
 import Team from './pages/Team'
+import Account from './pages/Account'
 import Unauthorized from './pages/Unauthorized'
 
 
@@ -62,6 +63,20 @@ export default {
                     return next({ path: '/unauthorized' });
                 })
             }
+
+        },
+
+        {
+            path: '/account',
+            component: Account,
+            name: 'Account',
+            // beforeEnter: (to, form, next) => {
+            //     axios.get('/api/authenticated').then(() => {
+            //         next()
+            //     }).catch(() => {
+            //         return next({ path: '/unauthorized' });
+            //     })
+            // }
 
         },
 
