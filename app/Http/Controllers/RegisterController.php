@@ -33,4 +33,32 @@ class RegisterController extends Controller
         ]);
 
     }
+
+    public function delete($id)
+    {
+        return User::findOrFail($id)->delete();
+    }
+
+    public function update(Request $request, $id){
+
+        $request->validate([
+
+            'name'=>['required'],
+            'email'=>['required', 'email'],
+            'roles'=> ['required'],
+            'quote'=> ['required'],
+            'author'=> ['required'],
+
+        ]);
+
+
+        User::where('id', $id)->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'roles'=>$request->roles,
+            'quote'=>$request->quote,
+            'author'=>$request->author,
+        ]);
+        
+    }
 }
