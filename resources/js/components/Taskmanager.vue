@@ -152,7 +152,7 @@ export default {
     },
 
     updateProject(project){
-      this.project = project.data 
+      this.project = project.data
     },
   
 

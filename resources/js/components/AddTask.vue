@@ -133,7 +133,6 @@ export default {
 
         getUsers(){
           axios.get('/api/index ').then(response => {
-          // console.log(response.data)
           this.team = response.data;
           })
           .catch(error =>{
@@ -144,6 +143,7 @@ export default {
         addProject(){
             if (this.$refs.form.validate()){
                 this.loading=true;
+
             const project = {
                 name: this.name,
                 title: this.title,
@@ -157,7 +157,7 @@ export default {
             this.loading=false;
             this.dialog=false;
             this.$emit("add-projects", project);
-
+            window.location.reload()
             }).catch((error)=>{
               console.log(error)
             })

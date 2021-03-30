@@ -11,6 +11,7 @@
       <template v-slot:activator="{ on, attrs }"> 
 
         <v-btn 
+        v-if="(typeof (logged) == typeof(''))" 
         depressed 
         small 
         text 
@@ -213,7 +214,7 @@
 
   export default {
 
-    props:['errorReg','user'],
+    props:['errorReg','logged'],
 
     data: () => ({
       valid: true,

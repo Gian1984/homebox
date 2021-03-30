@@ -128,7 +128,7 @@
 
       <v-spacer></v-spacer>
       
-      <PopupRegister v-on:register="register($event)" :errorReg="errorReg" @update-register="updateRegister" :user="user"/>
+      <PopupRegister v-on:register="register($event)" :errorReg="errorReg" @update-register="updateRegister" :logged="logged"/>
 
       <PopupLogin v-on:login="login($event)" :user="user" :errorLog="errorLog" @update-login="updateLogin"/>
 
@@ -138,7 +138,7 @@
         depressed 
         small 
         text
-        v-if="(typeof (this.user) !== typeof(''))" 
+        v-if="(typeof (this.logged) !== typeof(''))" 
       >
           <span>Sign out</span>
           <v-icon>mdi-exit-to-app</v-icon>
@@ -171,6 +171,7 @@ import PopupRegister from './components/PopupRegister'
         user:'',
         errorLog:'',
         errorReg:'',
+        logged:'',
       
       }
     },
@@ -195,6 +196,7 @@ import PopupRegister from './components/PopupRegister'
  
           axios.post('api/login',login).then(response=>{ 
           this.user = response.data;
+          this.logged = this.user
           this.$router.push({ path: "/" });
           
           }).catch((error)=>{
@@ -206,15 +208,29 @@ import PopupRegister from './components/PopupRegister'
         this.errorLog=error;
       },
 
+      getLoggedUser(){
+        axios.get('/api/user').then(response => {
+         this.logged = response.data;
+         })
+        .catch(error =>{
+        console.log(error);
+        })
+    },
+
 
       logout(){
             axios.post('api/logout').then(response=>{
             this.$router.push({ path: "/logout" });
-            return this.user=''
+            return this.logged=''
           })
       }
 
     },
+
+    created(){
+
+        this.getLoggedUser();
+  }
   }
 </script>
 
