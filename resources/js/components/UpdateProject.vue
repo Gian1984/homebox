@@ -103,6 +103,7 @@ export default {
                 status: this.status
             }
 
+
             axios.put('/api/tasks/'+ projectID, status).then(response=>{
             this.loading=false;
             this.dialog=false;

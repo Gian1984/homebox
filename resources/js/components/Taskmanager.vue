@@ -126,6 +126,7 @@ export default {
       message: false,
       hints: true,
       user:'',
+      dialog: false,
 
     }
   },

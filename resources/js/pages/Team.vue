@@ -30,16 +30,9 @@
                     </v-list-item>
 
                     <v-card-actions>
-                    <v-btn
-                        small
-                        outlined
-                        rounded
-                        text
-                        color="pink darken-1"
-                    >
-                    <v-icon small>mdi-forum</v-icon>
-                        Message
-                    </v-btn>
+                  
+                      <PopupMessage :person="person"/>
+
                     </v-card-actions>
                 </v-card>
           </v-flex>
@@ -51,7 +44,13 @@
 
 <script>
 
+import PopupMessage from '../components/PopupMessage'
+
 export default {
+
+  components: {
+      PopupMessage,
+    },
 
   data() {
     return {

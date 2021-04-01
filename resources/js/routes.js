@@ -70,13 +70,13 @@ export default {
             path: '/account',
             component: Account,
             name: 'Account',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ path: '/unauthorized' });
-            //     })
-            // }
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/authenticated').then(() => {
+                    next()
+                }).catch(() => {
+                    return next({ path: '/unauthorized' });
+                })
+            }
 
         },
 
