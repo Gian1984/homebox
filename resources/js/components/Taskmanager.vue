@@ -135,13 +135,15 @@ export default {
   methods:{
 
     getLoggedUser(){
-    axios.get('/api/user').then(response => {
-         this.user = response.data;
-         })
-        .catch(error =>{
-        console.log(error);
-        })
-    },
+        
+          axios.get('/api/userlogged').then(response => {
+          this.logged = response.data;
+          })
+          .catch(error =>{
+          console.log(error);
+          })
+      },
+
 
     sortBy(prop){
       this.projects.sort((a,b)=> a[prop] < b[prop] ? -1 : 1)

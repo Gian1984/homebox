@@ -216,8 +216,7 @@ import PopupRegister from './components/PopupRegister'
           .catch(error =>{
           console.log(error);
           })
-      
-    },
+      },
 
 
       logout(){
