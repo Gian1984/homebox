@@ -47,15 +47,13 @@ export default {
   methods:{
 
     getLoggedUser(){
-        
-          axios.get('/api/userlogged').then(response => {
-          this.logged = response.data;
-          })
-          .catch(error =>{
-          console.log(error);
-          })
-      },
-
+    axios.get('/api/user').then(response => {
+         this.user = response.data;
+         })
+        .catch(error =>{
+        console.log(error);
+        })
+    },
 
     getList(){
         axios.get('api/tasks').then(response=>{     
