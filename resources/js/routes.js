@@ -23,13 +23,13 @@ export default {
             path: '/dashboard',
             component: Dashboard,
             name: 'Dashboard',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ path: '/unauthorized' });
-            //     })
-            // }
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/authenticated').then(() => {
+                    next()
+                }).catch(() => {
+                    return next({ path: '/unauthorized' });
+                })
+            }
 
         },
 
@@ -43,26 +43,26 @@ export default {
             path: '/team',
             component: Team,
             name: 'Team',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ path: '/unauthorized' });
-            //     })
-            // }
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/authenticated').then(() => {
+                    next()
+                }).catch(() => {
+                    return next({ path: '/unauthorized' });
+                })
+            }
         },
 
         {
             path: '/projects',
             component: Projects,
             name: 'Projects',
-            // beforeEnter: (to, form, next) => {
-            //     axios.get('/api/authenticated').then(() => {
-            //         next()
-            //     }).catch(() => {
-            //         return next({ path: '/unauthorized' });
-            //     })
-            // }
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/authenticated').then(() => {
+                    next()
+                }).catch(() => {
+                    return next({ path: '/unauthorized' });
+                })
+            }
 
         },
 
