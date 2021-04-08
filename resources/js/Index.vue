@@ -207,13 +207,15 @@ import PopupRegister from './components/PopupRegister'
       updateLogin(error){
         this.errorLog=error;
       },
-
+    
       getLoggedUser(){
-        axios.get('/api/user').then(response => {
-         this.logged = response.data;
-         })
-        .catch(error =>{
-        console.log(error);
+        axios.get('/sanctum/csrf-cookie').then(response => {
+          axios.get('/api/user').then(response => {
+          this.logged = response.data;
+          })
+          .catch(error =>{
+          console.log(error);
+          })
         })
     },
 
