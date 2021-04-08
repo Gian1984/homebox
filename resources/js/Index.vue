@@ -209,14 +209,14 @@ import PopupRegister from './components/PopupRegister'
       },
     
       getLoggedUser(){
-        axios.get('/sanctum/csrf-cookie').then(response => {
-          axios.get('/api/user').then(response => {
+        
+          axios.get('/api/userlogged').then(response => {
           this.logged = response.data;
           })
           .catch(error =>{
           console.log(error);
           })
-        })
+      
     },
 
 

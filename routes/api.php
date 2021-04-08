@@ -41,6 +41,7 @@ Route::put('update/{id}',[RegisterController::class,'update']);
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
+Route::get('userlogged', [LoginController::class, 'userlogged']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 

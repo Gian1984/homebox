@@ -33,5 +33,13 @@ class LoginController extends Controller
         Auth::logout();
     }
 
+    public function userlogged(){
+
+        $user = Auth::user();
+
+        return $user;   
+
+    }
+
     
 }
